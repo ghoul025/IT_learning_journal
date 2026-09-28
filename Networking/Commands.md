@@ -64,13 +64,23 @@ ipconfig
 ipconfig /all
 ```
 
-Key information:
+Sample Output:
 
-- IPv4 Address
-- IPv6 Address
-- Subnet Mask
-- Default Gateway
-- DNS Servers
+```text
+Ethernet adapter Ethernet:
+
+   IPv4 Address. . . . . . . . . . : 192.168.1.100
+   Subnet Mask . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . : 192.168.1.1
+```
+
+Key Information:
+
+```text
+IPv4 Address     = Device Address
+Subnet Mask      = Network Boundary
+Default Gateway  = Path to Other Networks
+```
 
 Use when:
 
@@ -132,7 +142,35 @@ Example:
 ping 8.8.8.8
 ```
 
-Questions answered:
+Sample Output:
+
+```text
+Reply from 8.8.8.8:
+bytes=32 time=15ms TTL=117
+
+Reply from 8.8.8.8:
+bytes=32 time=14ms TTL=117
+
+Ping statistics:
+    Packets: Sent = 2, Received = 2, Lost = 0 (0% loss)
+```
+
+Key Information:
+
+```text
+time = Latency
+TTL  = Remaining Hop Count
+Loss = Packet Loss Percentage
+```
+
+Healthy Result:
+
+```text
+0% packet loss
+Consistent response times
+```
+
+Questions Answered:
 
 ```text
 Can I reach the destination?
@@ -157,7 +195,31 @@ Example:
 tracert google.com
 ```
 
-Questions answered:
+Sample Output:
+
+```text
+Tracing route to google.com
+
+  1    <1 ms     <1 ms     <1 ms  192.168.1.1
+  2     5 ms      5 ms      4 ms  isp-router
+  3     9 ms      8 ms      9 ms  upstream-router
+  4    15 ms     14 ms     15 ms  google.com
+```
+
+Key Information:
+
+```text
+Each line = Network Hop
+
+Increasing latency is normal.
+
+Timeouts may indicate:
+- Filtering
+- Congestion
+- Routing Issues
+```
+
+Questions Answered:
 
 ```text
 Where is communication failing?
@@ -195,7 +257,32 @@ Example:
 nslookup google.com
 ```
 
-Questions answered:
+Sample Output:
+
+```text
+Server:  dns.company.local
+Address: 10.0.0.10
+
+Non-authoritative answer:
+Name:    google.com
+Address: 142.250.190.46
+```
+
+Key Information:
+
+```text
+Server  = DNS Server Used
+Name    = Requested Hostname
+Address = Resolved IP Address
+```
+
+Healthy Result:
+
+```text
+Hostname successfully resolves.
+```
+
+Questions Answered:
 
 ```text
 Can DNS resolve names?
@@ -238,7 +325,32 @@ Example:
 netstat -ano
 ```
 
-Questions answered:
+Sample Output:
+
+```text
+Proto  Local Address         Foreign Address       State
+TCP    192.168.1.100:50432   142.250.190.46:443   ESTABLISHED
+TCP    192.168.1.100:49611   10.0.0.10:53         ESTABLISHED
+```
+
+Key Information:
+
+```text
+Local Address   = Your Device
+Foreign Address = Remote Device
+State           = Connection State
+```
+
+Common States:
+
+```text
+LISTENING
+ESTABLISHED
+TIME_WAIT
+CLOSE_WAIT
+```
+
+Questions Answered:
 
 ```text
 What connections are active?
@@ -282,7 +394,25 @@ Example:
 arp -a
 ```
 
-Questions answered:
+Sample Output:
+
+```text
+Interface: 192.168.1.100
+
+Internet Address      Physical Address      Type
+192.168.1.1           aa-bb-cc-dd-ee-ff     dynamic
+192.168.1.10          11-22-33-44-55-66     dynamic
+```
+
+Key Information:
+
+```text
+Internet Address = IP Address
+Physical Address = MAC Address
+Type             = Dynamic or Static
+```
+
+Questions Answered:
 
 ```text
 Which MAC addresses have been learned?
@@ -308,7 +438,31 @@ Example:
 route print
 ```
 
-Questions answered:
+Sample Output:
+
+```text
+IPv4 Route Table
+
+Network Destination    Netmask          Gateway
+0.0.0.0                0.0.0.0          192.168.1.1
+192.168.1.0            255.255.255.0    On-link
+```
+
+Key Information:
+
+```text
+0.0.0.0/0 = Default Route
+
+Gateway = Next-Hop Device
+```
+
+Healthy Result:
+
+```text
+A valid default route exists.
+```
+
+Questions Answered:
 
 ```text
 How is traffic being routed?
@@ -339,7 +493,7 @@ Useful for:
 
 ---
 
-# Interface Testing
+# Network Performance Testing
 
 ## pathping (Windows)
 
@@ -358,7 +512,7 @@ Useful for:
 
 ---
 
-# Network Configuration Testing
+# Port Connectivity Testing
 
 ## Test-NetConnection (PowerShell)
 
@@ -370,7 +524,28 @@ Example:
 Test-NetConnection google.com -Port 443
 ```
 
-Questions answered:
+Sample Output:
+
+```text
+ComputerName     : google.com
+RemoteAddress    : 142.250.190.46
+RemotePort       : 443
+TcpTestSucceeded : True
+```
+
+Key Information:
+
+```text
+TcpTestSucceeded = Port Reachability
+```
+
+Healthy Result:
+
+```text
+TcpTestSucceeded : True
+```
+
+Questions Answered:
 
 ```text
 Can I reach the host?
@@ -397,18 +572,39 @@ Example:
 curl https://example.com
 ```
 
-Useful for:
+Sample Output:
 
-- API Testing
-- Web Server Testing
-- Connectivity Verification
+```text
+HTTP/1.1 200 OK
 
-Questions answered:
+<html>
+  ...
+</html>
+```
+
+Key Information:
+
+```text
+200 = Success
+301 = Redirect
+403 = Forbidden
+404 = Not Found
+500 = Server Error
+```
+
+Questions Answered:
 
 ```text
 Can I reach the service?
 Is the application responding?
 ```
+
+Useful for:
+
+- Web Server Testing
+- API Testing
+- Connectivity Verification
+- Application Troubleshooting
 
 ---
 
@@ -424,11 +620,31 @@ Purpose:
 Inspect Network Traffic
 ```
 
+Example Packet View:
+
+```text
+No.  Time      Source          Destination     Protocol
+1    0.000     192.168.1.100   8.8.8.8         DNS
+2    0.020     8.8.8.8         192.168.1.100   DNS
+3    0.030     192.168.1.100   142.250.x.x     TCP
+4    0.045     142.250.x.x     192.168.1.100   TCP
+```
+
+Key Information:
+
+```text
+Source      = Sender
+Destination = Receiver
+Protocol    = Traffic Type
+Time        = Packet Timing
+```
+
 Useful for:
 
 - Deep Troubleshooting
 - Protocol Analysis
 - Packet Inspection
+- Root Cause Analysis
 
 Wireshark allows administrators to view network traffic at the packet level.
 
@@ -488,3 +704,34 @@ Need to test a web service?
 Need deep packet analysis?
 → Wireshark
 ```
+
+---
+
+# Key Takeaways
+
+When troubleshooting networking issues, focus on answering these questions in order:
+
+```text
+1. Do I have an IP address?
+2. Can I reach my gateway?
+3. Can I reach the destination?
+4. Can DNS resolve names?
+5. Is the route correct?
+6. Is the service reachable?
+7. What do the packets show?
+```
+
+The most important commands for day-to-day IT Operations are:
+
+- ipconfig
+- ping
+- tracert / traceroute
+- nslookup
+- arp
+- netstat
+- route
+- Test-NetConnection
+- curl
+- Wireshark
+
+Knowing when to use a command is more valuable than memorizing every available option.
