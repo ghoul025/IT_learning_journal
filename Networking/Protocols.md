@@ -64,6 +64,49 @@ Ports exist at the Transport Layer and are primarily associated with TCP and UDP
 
 ---
 
+# Common Ports
+
+The following ports are commonly encountered during troubleshooting and system administration.
+
+| Port | Protocol | Service | Purpose |
+|--------|----------|----------|----------|
+| 20/21 | TCP | FTP | File Transfer |
+| 22 | TCP | SSH | Secure Remote Access |
+| 23 | TCP | Telnet | Remote Access (Legacy) |
+| 25 | TCP | SMTP | Email Sending |
+| 53 | TCP/UDP | DNS | Name Resolution |
+| 67/68 | UDP | DHCP | Automatic IP Configuration |
+| 80 | TCP | HTTP | Web Traffic |
+| 88 | TCP/UDP | Kerberos | Authentication |
+| 110 | TCP | POP3 | Email Retrieval |
+| 123 | UDP | NTP | Time Synchronization |
+| 135 | TCP | RPC | Windows Remote Services |
+| 137-139 | TCP/UDP | NetBIOS | Legacy Windows Networking |
+| 143 | TCP | IMAP | Email Retrieval |
+| 161/162 | UDP | SNMP | Monitoring and Management |
+| 389 | TCP/UDP | LDAP | Directory Services |
+| 443 | TCP | HTTPS | Secure Web Traffic |
+| 445 | TCP | SMB | Windows File Sharing |
+| 514 | UDP | Syslog | Log Collection |
+| 636 | TCP | LDAPS | Secure Directory Services |
+| 3389 | TCP | RDP | Windows Remote Desktop |
+
+---
+
+## Port Types
+
+Ports are commonly divided into three ranges.
+
+| Range | Category |
+|---------|------------|
+| 0-1023 | Well-Known Ports |
+| 1024-49151 | Registered Ports |
+| 49152-65535 | Dynamic / Ephemeral Ports |
+
+Most services commonly encountered during administration and troubleshooting use well-known ports.
+
+---
+
 # TCP
 
 Transmission Control Protocol (TCP) is a connection-oriented transport protocol.
@@ -84,7 +127,7 @@ Characteristics:
 
 Common use cases:
 
-- Web Browsing
+- Traditional Web Applications
 - Email
 - File Transfers
 - Remote Administration
@@ -113,6 +156,7 @@ Characteristics:
 
 Common use cases:
 
+- DNS Queries
 - Voice Communication
 - Video Streaming
 - Online Gaming
@@ -280,13 +324,13 @@ Benefits:
 - Enables Internet access for private networks
 - Adds basic address abstraction
 
-NAT is commonly performed by routers and firewalls.
+NAT is commonly performed by routers, firewalls, and other gateway devices.
 
 ---
 
 # VPN
 
-A Virtual Private Network (VPN) creates an encrypted tunnel across another network.
+A Virtual Private Network (VPN) creates a secure connection across another network.
 
 Purpose:
 
@@ -300,7 +344,7 @@ Common use cases:
 - Site-to-Site Connectivity
 - Secure Administrative Access
 
-VPNs protect data while it travels through untrusted networks.
+Most VPN implementations use encryption to protect data while it travels across untrusted networks.
 
 ---
 
@@ -324,7 +368,7 @@ Website Communication
 
 HTTP is used to transfer web content between clients and web servers.
 
-HTTP traffic is unencrypted.
+HTTP traffic is not encrypted.
 
 ---
 
@@ -359,8 +403,9 @@ SSH allows administrators to remotely access and manage systems securely.
 Common uses:
 
 - Remote Terminal Access
-- File Transfers
-- Administrative Tasks
+- System Administration
+- Secure File Transfers
+- Automation Tasks
 
 ---
 
@@ -390,7 +435,7 @@ Purpose:
 Secure File Transfers
 ```
 
-SFTP provides encrypted file transfer capabilities over SSH.
+SFTP provides encrypted file transfer capabilities using SSH.
 
 ---
 
@@ -410,7 +455,7 @@ Purpose:
 Time Synchronization
 ```
 
-Accurate time is essential for:
+Accurate time is important for:
 
 - Logging
 - Authentication
@@ -470,10 +515,13 @@ Multiple protocols work together to complete a single network operation.
 
 # Key Takeaways
 
-The most important protocols and services to understand are:
+The most important transport protocols are:
 
 - TCP
 - UDP
+
+The most important infrastructure protocols are:
+
 - ARP
 - DHCP
 - DNS
@@ -499,4 +547,4 @@ The most common application and operational protocols are:
 
 Most real-world networking issues can be traced to one or more of these components.
 
-Understanding how they interact provides the foundation for effective troubleshooting and network administration.
+Understanding how they interact provides the foundation for effective troubleshooting, system administration, and network operations.
