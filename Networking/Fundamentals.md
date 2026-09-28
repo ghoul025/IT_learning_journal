@@ -70,9 +70,8 @@ Common examples:
 - Switch
 - Router
 - Access Point
-- Firewall
 
-Their purpose is to ensure data reaches its destination.
+Their purpose is to help data reach its destination.
 
 ---
 
@@ -150,7 +149,7 @@ Both are required for network communication.
 
 Local Area Network.
 
-A network covering a small area.
+A network covering a limited area.
 
 Examples:
 
@@ -164,7 +163,7 @@ Examples:
 
 Wide Area Network.
 
-A network that connects multiple LANs.
+A network that connects multiple LANs across larger distances.
 
 Example:
 
@@ -174,17 +173,17 @@ The Internet
 
 ---
 
-## WLAN
+# Transmission Media
 
-Wireless Local Area Network.
+A transmission medium is the path used to carry signals between devices.
 
-A LAN that uses wireless communication.
+Examples:
 
-Example:
+- Copper Cable
+- Fiber Optic Cable
+- Wireless Signals
 
-```text
-Wi-Fi
-```
+A network cannot function without a medium capable of carrying data.
 
 ---
 
@@ -206,9 +205,26 @@ Every network communication follows this same principle regardless of size.
 
 ---
 
+# Data Segmentation
+
+Networks do not typically transmit large amounts of information as a single block.
+
+Instead, data is divided into smaller units before transmission.
+
+Benefits include:
+
+- Efficient delivery
+- Error recovery
+- Better performance
+- Reliable communication
+
+The exact names of these units may vary depending on the networking layer, but the concept remains the same.
+
+---
+
 # Data Encapsulation
 
-When data travels across a network, it is divided into smaller units and wrapped with information that helps delivery.
+When data travels across a network, it is wrapped with additional information that helps deliver it correctly.
 
 Conceptually:
 
@@ -227,6 +243,8 @@ Transmission
 Each layer adds information required for successful communication.
 
 This process is known as encapsulation.
+
+The reverse process at the receiving device is known as decapsulation.
 
 ---
 
@@ -275,12 +293,12 @@ Can signals physically travel?
 
 ## Layer 2 – Data Link
 
-Responsible for communication within the local network.
+Responsible for communication within a local network.
 
 Uses:
 
 ```text
-MAC Addresses
+Physical Addressing
 ```
 
 Question:
@@ -298,7 +316,7 @@ Responsible for moving data between networks.
 Uses:
 
 ```text
-IP Addresses
+Logical Addressing
 ```
 
 Question:
@@ -343,7 +361,7 @@ Can the communication remain active?
 
 ## Layer 6 – Presentation
 
-Responsible for preparing data in a format both sides understand.
+Responsible for preparing data in a format both sides can understand.
 
 Focus:
 
@@ -376,7 +394,7 @@ Can the application communicate?
 
 # TCP/IP Model
 
-The TCP/IP Model is the practical networking model used today.
+The TCP/IP Model is the practical framework used by modern networks.
 
 ```text
 Application
@@ -402,22 +420,23 @@ Data Link
 Physical              → Network Access
 ```
 
-Understanding the TCP/IP Model explains how modern networks and the Internet operate.
+The TCP/IP Model describes how data moves through modern networks.
 
 ---
 
 # Fundamental Truths of Networking
 
-These concepts never change regardless of technology:
+These concepts remain true regardless of technology, vendor, operating system, or protocol.
 
 1. Devices must be identifiable.
 2. Devices must have a way to communicate.
 3. Data must have a source and destination.
 4. Data must travel through a transmission medium.
 5. Data must follow agreed-upon rules.
-6. Data often passes through multiple devices before reaching its destination.
-7. Network communication can be analyzed in layers.
-8. Every networking technology builds upon these principles.
+6. Data is divided into smaller units for transmission.
+7. Data often passes through multiple devices before reaching its destination.
+8. Network communication can be analyzed in layers.
+9. Every networking technology builds upon these principles.
 
 ---
 
@@ -425,18 +444,9 @@ These concepts never change regardless of technology:
 
 Networking is the science of moving data between devices.
 
-The most important concepts to remember are:
+The most important concepts to understand are:
 
 - Hosts
 - Clients and Servers
 - Network Devices
-- IP Addresses
-- MAC Addresses
-- LAN, WAN, and WLAN
-- Data Communication
-- Encapsulation
-- OSI Model
-- TCP/IP Model
-
-Everything else in networking, including DNS, DHCP, Routing, Switching, VLANs, VPNs, Firewalls, Cloud Networking, and Network Security, is built on these foundations.
-``
+- IP
