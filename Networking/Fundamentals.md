@@ -262,6 +262,24 @@ The OSI Model is a conceptual framework used to understand network communication
 1 - Physical
 ```
 
+### OSI Layer Mnemonic
+
+A common mnemonic used to remember the OSI layers from Layer 7 to Layer 1:
+
+```text
+All People Seems To Need Data Process
+
+A - Application
+P - Presentation
+S - Session
+T - Transport
+N - Network
+D - Data Link
+P - Physical
+```
+
+This mnemonic is useful for quickly recalling the layer order during troubleshooting and study.
+
 Purpose:
 
 ```text
@@ -344,6 +362,46 @@ Question:
 ```text
 Can data be delivered correctly?
 ```
+
+---
+
+## Protocol Data Units (PDUs)
+
+As data moves down the networking stack during encapsulation, each layer treats the data differently.
+
+| Layer | PDU |
+|---------|---------|
+| Transport | Segment |
+| Network | Packet |
+| Data Link | Frame |
+| Physical | Bits |
+
+Mnemonic:
+
+```text
+Some People Fear Birthdays
+
+S - Segment
+P - Packet
+F - Frame
+B - Bits
+```
+
+Example:
+
+```text
+Application Data
+        ↓
+Segment
+        ↓
+Packet
+        ↓
+Frame
+        ↓
+Bits
+```
+
+When the data reaches the destination, the process is reversed through decapsulation.
 
 ---
 
