@@ -68,9 +68,11 @@ Technology should be manageable and easy to troubleshoot.
 
 ## What IT Operations Manages
 
-IT Operations manages the resources and services that people depend on every day.
+IT Operations manages both technology resources and operational activities.
 
-### Services
+### Technology Resources
+
+#### Services
 
 Applications and systems used by the business.
 
@@ -81,7 +83,7 @@ Examples:
 - Internal applications
 - Business platforms
 
-### Users
+#### Users
 
 The people who use technology services.
 
@@ -91,7 +93,7 @@ Examples:
 - Contractors
 - Support teams
 
-### Endpoints
+#### Endpoints
 
 Devices used to access company resources.
 
@@ -102,7 +104,7 @@ Examples:
 - Mobile devices
 - Thin clients
 
-### Assets
+#### Assets
 
 Technology owned or managed by the organization.
 
@@ -113,7 +115,7 @@ Examples:
 - Software licenses
 - Peripherals
 
-### Access
+#### Access
 
 Permissions that determine what users can use.
 
@@ -123,29 +125,29 @@ Examples:
 - Shared folders
 - Administrative permissions
 
-### Incidents
+### Operational Activities
+
+#### Incidents
 
 Unexpected issues affecting services.
 
-Example:
+**Example:** Users cannot log in to a business application.
 
-- Users cannot log in to a business application.
-
-### Requests
+#### Requests
 
 Routine tasks requested by users.
 
-Example:
+Examples:
 
 - Software installation
 - Password reset
 - New account creation
 
-### Changes
+#### Changes
 
 Modifications made to systems or services.
 
-Example:
+Examples:
 
 - Application upgrades
 - Configuration updates
@@ -153,9 +155,82 @@ Example:
 
 ---
 
+## Understanding Service Dependencies
+
+Technology services rarely operate on their own. Most services depend on multiple systems working together.
+
+```text
+Users
+   ↓
+Applications
+   ↓
+Systems
+   ↓
+Network
+   ↓
+Power
+```
+
+A problem at a lower layer can affect everything above it.
+
+For example:
+
+```text
+Power Failure
+   ↓
+Network Equipment Offline
+   ↓
+Application Unavailable
+   ↓
+Users Cannot Work
+```
+
+Because of these dependencies, IT Operations should avoid focusing only on the visible symptom.
+
+Instead, investigate the services and components that support the affected system.
+
+### Examples
+
+#### Application Issue
+
+A user reports that a business application is unavailable.
+
+Possible causes:
+
+- Application failure
+- System failure
+- Database issue
+- Network issue
+- Authentication service issue
+
+The visible symptom is the same, but the root cause may exist elsewhere in the dependency chain.
+
+#### Login Issue
+
+A user cannot access an application.
+
+Possible causes:
+
+- Account problem
+- Identity service failure
+- Network connectivity issue
+- Application configuration issue
+
+Good troubleshooting requires understanding how services depend on one another.
+
+### Key Principle
+
+When investigating an issue, always ask:
+
+> "What does this service depend on?"
+
+This simple question often leads to faster diagnosis and more accurate troubleshooting.
+
+---
+
 ## Operational Roles
 
-Different teams may have different names, but most IT Operations functions fall into these areas.
+Different organizations may use different job titles, but most IT Operations functions fall into these areas.
 
 ### Service Desk
 
@@ -211,6 +286,18 @@ Typical responsibilities:
 - Connectivity troubleshooting
 - Equipment management
 - Network incident response
+
+### Operations Center
+
+Some organizations use a centralized operations team that monitors services and coordinates operational response activities.
+
+Typical responsibilities:
+
+- Monitoring systems and services
+- Responding to alerts
+- Coordinating incident response
+- Tracking operational health
+- Escalating issues to specialized teams
 
 > In smaller organizations, one person may perform several of these roles. In larger organizations, these responsibilities are often divided across multiple teams.
 
@@ -273,6 +360,8 @@ Respond
    ↓
 Resolve
    ↓
+Verify
+   ↓
 Document
    ↓
 Improve
@@ -298,6 +387,12 @@ Take appropriate action.
 
 Restore service or complete the task.
 
+### Verify
+
+Confirm that the issue is resolved or the requested work was completed successfully.
+
+Verification helps prevent premature ticket closure, repeat incidents, and incomplete changes.
+
 ### Document
 
 Record what happened and what was done.
@@ -313,8 +408,9 @@ An alert reports a service failure:
 1. Monitoring detects the issue.
 2. Operations investigates.
 3. Service is restored.
-4. Findings are documented.
-5. Preventive improvements are implemented.
+4. Functionality is verified.
+5. Findings are documented.
+6. Preventive improvements are implemented.
 
 ---
 
@@ -507,7 +603,7 @@ This approach saves time, improves accuracy, and creates knowledge that can be r
 - The focus is on availability, reliability, stability, and support.
 - Operations includes both reactive and proactive work.
 - Most operational activities follow a common lifecycle.
+- Services depend on other systems and components.
 - Documentation, standardization, verification, and continuous improvement are essential habits.
 - Successful IT Operations is measured by service outcomes, not tools.
 - A structured troubleshooting mindset is often more valuable than knowing a specific product or platform.
-``
